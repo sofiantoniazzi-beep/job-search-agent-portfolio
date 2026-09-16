@@ -20,9 +20,8 @@ A production job-search decision system that turns qualitative career discovery 
 - Google Sheets Tracker + Ranker + Run Log operational workflow
 - Recovery checkpoints, run logging, and cost instrumentation
 - Separate weekly availability maintenance with conservative `Active / Closed / Unknown` logic
-- **7.6k+ canonical vacancies** in the production registry at Phase 2 closure
 - **56-column** production Tracker schema
-- **23 portfolio reference tests** across core decision, persistence, orchestration, availability, and state-safety rules
+- **23 portfolio tests passing** across core decision, persistence, orchestration, availability, and state-safety rules
 
 ## How the project evolved
 
@@ -124,7 +123,7 @@ The production system was hardened around partial failure, not only the happy pa
 - availability prefers `Unknown` to a destructive false `Closed` classification;
 - absence from finite retrieval is **never** treated as closure evidence.
 
-The unattended daily production workflow has been validated end-to-end. At Phase 2 closure, the production registry contained **7.6k+ canonical vacancies**, and the operational Tracker used a **56-column schema**.
+The unattended daily production workflow has been validated end-to-end, and the operational Tracker uses a **56-column schema**.
 
 See [`docs/production-reliability.md`](docs/production-reliability.md).
 
@@ -183,7 +182,7 @@ pip install -r requirements.txt
 python -m pytest -q
 ```
 
-The 23 reference tests cover matching thresholds, career-direction safeguards, model-output validation, source-aware availability semantics, canonical availability aggregation, cross-source deduplication, historical canonical persistence and repost handling, CV routing, Tracker semantics, Ranker behavior, daily orchestration, weekly maintenance, and daily-vs-weekly state-commit boundaries. Test execution will be re-verified during the final public-release audit.
+The **23 reference tests pass in GitHub Actions** and cover matching thresholds, career-direction safeguards, model-output validation, source-aware availability semantics, canonical availability aggregation, cross-source deduplication, historical canonical persistence and repost handling, CV routing, Tracker semantics, Ranker behavior, daily orchestration, weekly maintenance, and daily-vs-weekly state-commit boundaries.
 
 ## Privacy and sanitization
 
@@ -191,4 +190,4 @@ This repository was created independently rather than by making the production r
 
 ## Status
 
-Architecture consistency, the AI-assisted replication framework, the Phase 0 → Phase 1 → Phase 2 narrative, and sanitized Google Sheets operational visuals are complete. Remaining work before public release is the final privacy/security/history, test-execution, claims-evidence, and recruiter-readability audit.
+The portfolio architecture, AI-assisted replication framework, Phase 0 → Phase 1 → Phase 2 narrative, sanitized Google Sheets operational visuals, test suite, and public-release audit are complete. The repository is ready for public release.
