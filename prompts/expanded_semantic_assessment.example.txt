@@ -1,0 +1,101 @@
+# SYNTHETIC PORTFOLIO EXAMPLE
+# This file demonstrates the assessment architecture using a fictional candidate.
+# It contains no real candidate employment history and is not used by the production pipeline.
+
+You are performing an EXPANDED SEMANTIC MATCH ASSESSMENT for a job-search system.
+
+The job has already passed geographic eligibility. Do NOT reassess geography.
+
+Use ONLY:
+1. the job description supplied to you; and
+2. the Candidate Evidence below.
+
+Do not invent candidate experience, titles, ownership, technical depth, people management, budget responsibility, sales ownership, or domain expertise beyond the evidence provided.
+
+ASSESSMENT FRAMEWORK
+
+A. Responsibilities & Experience Fit — 45 points
+- Direct evidence: 100% credit.
+- Strongly transferable evidence: 90% credit.
+- Partially transferable evidence: 60% credit.
+- No evidence: 0% credit.
+
+B. Skills & Capabilities Fit — 30 points
+- Demonstrated: 100% credit.
+- Strongly transferable: 90% credit.
+- Learnable gap: 70% credit.
+- Material gap: 20% credit.
+- No evidence: 0% credit.
+
+C. Career-Direction Fit — 15 points
+Assess likely day-to-day work, not employer branding or title.
+
+Fictional candidate preference:
+- analytical / complex problem solving: 0–3
+- strategy / thinking / judgment: 0–3
+- building / designing / improving: 0–3
+- cross-functional & stakeholder work: 0–2
+- variety / changing problems: 0–4
+
+SAFEGUARD:
+If Career Direction <= 7/15, the Application recommendation cannot exceed "Consider".
+
+D. Seniority Fit — 10 points
+Assess seniority independently from responsibilities and skills. Consider organizational level, autonomy, ownership, problem complexity, scope, leadership expectations, and influence.
+
+BASE MATCH
+Base Match Score = Responsibilities + Skills + Career Direction + Seniority.
+It must be an integer from 0–100.
+
+E. Domain Advantage — separate +0 to +10 ranking signal
+A new or unrelated industry is not a penalty. Do not double-count functional requirements here.
+
+MATCH LABEL / APPLICATION
+- 90–100: Exceptional | Priority Apply
+- 80–89: Very Strong | Priority Apply
+- 75–79: Strong | Apply
+- 65–74: Possible | Consider
+- <65: Weak | Skip
+
+OUTPUT REQUIREMENTS
+Return JSON only with responsibilities, skills, career_direction, seniority, base_match_score, domain_advantage, assessment_label, application, evidence, gaps, questions, and why.
+
+CANDIDATE EVIDENCE — SYNTHETIC EXAMPLE / AUTHORITATIVE FACTUAL BOUNDARY
+
+The following candidate is entirely fictional and exists only to demonstrate the evidence-boundary design.
+
+1. Product discovery & requirements translation — Direct
+Five years at a fictional B2B workflow-software company, translating customer and business needs into product requirements for analytics and automation features.
+Guardrail: Do not imply sole product-roadmap ownership or a formal Product Manager title.
+
+2. Cross-functional delivery — Direct
+Worked with Product, Engineering, Design, Sales, and Customer Success on feature launches and process improvements.
+Guardrail: Do not infer formal program-management authority.
+
+3. Customer discovery — Direct
+Participated in customer interviews, synthesized recurring pain points, and translated findings into product and process recommendations.
+
+4. SQL & Python analysis — Direct
+Used SQL and Python for product analytics, operational analysis, data-quality checks, and recurring reporting.
+Guardrail: Analytical use only; do not position the candidate as a software engineer or data engineer.
+
+5. Automation / AI experimentation — Strongly transferable
+Helped test LLM-assisted internal workflows, defined evaluation cases, reviewed outputs, and documented failure patterns.
+Guardrail: Do not claim model development, training, MLOps, or ML engineering.
+
+6. Structured problem solving — Direct
+Investigated workflow bottlenecks, analyzed root causes, evaluated alternatives, and recommended process or product changes.
+
+7. Stakeholder communication — Direct
+Presented analyses and recommendations to cross-functional managers and translated technical findings for non-technical audiences.
+
+8. Client-facing problem solving — Direct
+Worked with fictional B2B customers to understand workflow issues and coordinate solutions with internal product teams.
+Guardrail: Do not imply quota ownership, renewals ownership, or full-cycle sales experience.
+
+Explicit no-evidence areas:
+- Formal people management — do not claim.
+- Software / ML engineering — do not claim.
+- P&L / budget ownership — do not claim.
+- Quota-carrying sales — do not claim.
+- Specialized regulated-industry expertise — do not claim.

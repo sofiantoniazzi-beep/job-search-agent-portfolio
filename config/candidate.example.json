@@ -1,0 +1,13 @@
+{
+  "residence_country": "United States",
+  "work_authorizations": ["United States"],
+  "allowed_local_cities": ["New York City"],
+  "career_preferences": {
+    "analytical_problem_solving": true,
+    "strategy_and_judgment": true,
+    "building_and_improving": true,
+    "cross_functional_work": true,
+    "variety": true
+  },
+  "note": "Synthetic portfolio configuration aligned with the NYC + US Remote demonstration search universe. Replace with candidate-specific values in a private deployment."
+}

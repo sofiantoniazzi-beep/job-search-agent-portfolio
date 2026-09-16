@@ -1,0 +1,27 @@
+{
+  "candidate": "Example Candidate",
+  "evidence_policy": "Only user-confirmed facts belong here. Do not infer missing experience.",
+  "roles": [
+    {
+      "employer": "Example Company",
+      "title": "Example Role",
+      "period": "YYYY-YYYY",
+      "projects": [
+        {
+          "name": "Example project",
+          "problem": "What problem existed?",
+          "scope": "What was in scope?",
+          "candidate_role": "What did the candidate personally own or contribute?",
+          "responsibilities": ["Confirmed responsibility"],
+          "stakeholders": ["Example stakeholder group"],
+          "methods_tools": ["Example tool"],
+          "decisions": ["Confirmed decision or influence"],
+          "deliverables": ["Confirmed deliverable"],
+          "results": ["Confirmed result; omit metrics if unknown"],
+          "capabilities": ["Reusable capability demonstrated"],
+          "domains": ["Example domain"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "variants": [
+    {
+      "name": "Example Function - General",
+      "function": "Example Function",
+      "specialization": null,
+      "language": "English",
+      "target_roles": ["Example Target Role"],
+      "positioning_intent": "Which evidence and professional narrative this variant emphasizes",
+      "evidence_emphasis": ["Candidate Evidence capability/project reference"]
+    },
+    {
+      "name": "Example Function - Specialization",
+      "function": "Example Function",
+      "specialization": "Example Specialization",
+      "language": "English",
+      "target_roles": ["Specialized Target Role"],
+      "positioning_intent": "Specialized positioning without changing underlying facts",
+      "evidence_emphasis": ["Relevant confirmed evidence"]
+    }
+  ],
+  "routing_principle": "Derive from the user's strategy; function-first, specialization-second is the reference project's approach, not a mandatory rule."
+}

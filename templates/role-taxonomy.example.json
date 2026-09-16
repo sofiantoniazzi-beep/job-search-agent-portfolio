@@ -1,0 +1,32 @@
+{
+  "roles": [
+    {
+      "title": "Example Target Role",
+      "interest": "YES",
+      "role_family": "Example Function",
+      "title_variants": ["Alternative title"],
+      "transferable_evidence": ["Candidate Evidence reference or capability"],
+      "likely_gaps": ["Known or plausible gap to validate"],
+      "specializations": ["Example specialization"],
+      "search_keywords": ["Example discovery keyword"],
+      "confusable_unwanted_titles": ["Similar-looking role the user does not want"]
+    },
+    {
+      "title": "Example Adjacent Role",
+      "interest": "MAYBE",
+      "role_family": "Example Function",
+      "title_variants": [],
+      "transferable_evidence": [],
+      "likely_gaps": [],
+      "specializations": [],
+      "search_keywords": [],
+      "confusable_unwanted_titles": []
+    },
+    {
+      "title": "Example Excluded Role",
+      "interest": "NO",
+      "role_family": "Example Function",
+      "reason": "User-confirmed reason for exclusion"
+    }
+  ]
+}

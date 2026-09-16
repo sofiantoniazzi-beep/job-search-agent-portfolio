@@ -1,0 +1,21 @@
+{
+  "run_mode": "daily",
+  "daily_hours_old": 48,
+  "role_queries": {
+    "Product": ["Product Manager"],
+    "Strategy": ["Strategy Analyst"],
+    "Solutions": ["Solutions Consultant"]
+  },
+  "locations": {
+    "nyc": {
+      "label": "New York City",
+      "jobspy_location": "New York, NY",
+      "work_model": "local_or_hybrid"
+    },
+    "us_remote": {
+      "label": "US Remote",
+      "jobspy_location": "United States",
+      "work_model": "remote_only"
+    }
+  }
+}

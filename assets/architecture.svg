@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+  <rect width="1400" height="820" fill="#0f172a"/>
+  <style>
+    .title{font:700 34px Arial,sans-serif;fill:#f8fafc}.label{font:600 19px Arial,sans-serif;fill:#f8fafc}.small{font:500 15px Arial,sans-serif;fill:#cbd5e1}.box{fill:#1e293b;stroke:#475569;stroke-width:2;rx:14}.accent{fill:#172554;stroke:#3b82f6}.green{fill:#052e16;stroke:#22c55e}.amber{fill:#422006;stroke:#f59e0b}.violet{fill:#2e1065;stroke:#8b5cf6}.arrow{stroke:#94a3b8;stroke-width:3;fill:none;marker-end:url(#m)}
+  </style>
+  <defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#94a3b8"/></marker></defs>
+  <text x="70" y="65" class="title">Job Search Agent — Portfolio Architecture</text>
+  <text x="70" y="95" class="small">Daily discovery + weekly availability, with durable identity, controlled AI use, and recovery-safe state</text>
+
+  <rect x="70" y="150" width="170" height="70" class="box accent"/><text x="155" y="180" text-anchor="middle" class="label">LinkedIn</text><text x="155" y="205" text-anchor="middle" class="small">retrieval</text>
+  <rect x="70" y="245" width="170" height="70" class="box accent"/><text x="155" y="275" text-anchor="middle" class="label">Indeed</text><text x="155" y="300" text-anchor="middle" class="small">retrieval</text>
+  <rect x="70" y="340" width="170" height="70" class="box accent"/><text x="155" y="370" text-anchor="middle" class="label">Himalayas</text><text x="155" y="395" text-anchor="middle" class="small">retrieval</text>
+
+  <rect x="300" y="245" width="190" height="70" class="box"/><text x="395" y="275" text-anchor="middle" class="label">Normalization</text><text x="395" y="300" text-anchor="middle" class="small">shared schema</text>
+  <rect x="540" y="245" width="210" height="70" class="box"/><text x="645" y="275" text-anchor="middle" class="label">Geo Eligibility</text><text x="645" y="300" text-anchor="middle" class="small">deterministic + semantic</text>
+  <rect x="800" y="245" width="220" height="70" class="box"/><text x="910" y="275" text-anchor="middle" class="label">Cross-source Dedup</text><text x="910" y="300" text-anchor="middle" class="small">conservative merge rules</text>
+  <rect x="1070" y="245" width="250" height="70" class="box green"/><text x="1195" y="275" text-anchor="middle" class="label">Canonical Persistence</text><text x="1195" y="300" text-anchor="middle" class="small">stable JOB-###### identity</text>
+
+  <rect x="1010" y="390" width="250" height="80" class="box violet"/><text x="1135" y="423" text-anchor="middle" class="label">Semantic Assessment</text><text x="1135" y="448" text-anchor="middle" class="small">new canonical jobs only</text>
+  <rect x="760" y="390" width="200" height="80" class="box violet"/><text x="860" y="423" text-anchor="middle" class="label">CV Routing</text><text x="860" y="448" text-anchor="middle" class="small">function → specialization</text>
+  <rect x="500" y="390" width="210" height="80" class="box amber"/><text x="605" y="423" text-anchor="middle" class="label">Tracker Sync</text><text x="605" y="448" text-anchor="middle" class="small">preserve user workflow fields</text>
+  <rect x="250" y="390" width="200" height="80" class="box amber"/><text x="350" y="423" text-anchor="middle" class="label">Ranker</text><text x="350" y="448" text-anchor="middle" class="small">fit + freshness workflow</text>
+
+  <rect x="300" y="590" width="230" height="85" class="box green"/><text x="415" y="624" text-anchor="middle" class="label">Weekly Availability</text><text x="415" y="649" text-anchor="middle" class="small">Active / Closed / Unknown</text>
+  <rect x="590" y="590" width="220" height="85" class="box"/><text x="700" y="624" text-anchor="middle" class="label">Run Checkpoint</text><text x="700" y="649" text-anchor="middle" class="small">resume-safe recovery</text>
+  <rect x="870" y="590" width="220" height="85" class="box"/><text x="980" y="624" text-anchor="middle" class="label">Cloud State</text><text x="980" y="649" text-anchor="middle" class="small">durable registry + runs</text>
+  <rect x="1150" y="590" width="180" height="85" class="box"/><text x="1240" y="624" text-anchor="middle" class="label">Run Log</text><text x="1240" y="649" text-anchor="middle" class="small">metrics + failures</text>
+
+  <path d="M240 185 L300 270" class="arrow"/><path d="M240 280 L300 280" class="arrow"/><path d="M240 375 L300 290" class="arrow"/>
+  <path d="M490 280 L540 280" class="arrow"/><path d="M750 280 L800 280" class="arrow"/><path d="M1020 280 L1070 280" class="arrow"/>
+  <path d="M1195 315 L1195 390" class="arrow"/><path d="M1010 430 L960 430" class="arrow"/><path d="M760 430 L710 430" class="arrow"/><path d="M500 430 L450 430" class="arrow"/>
+  <path d="M415 590 L540 470" class="arrow"/><path d="M700 590 L1110 315" class="arrow"/><path d="M810 632 L870 632" class="arrow"/><path d="M1150 632 L710 470" class="arrow"/>
+
+  <text x="70" y="760" class="small">Daily discovery advances canonical state only after Tracker + Ranker succeed. Weekly availability never advances discovery state.</text>
+</svg>

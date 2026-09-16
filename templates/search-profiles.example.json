@@ -1,0 +1,14 @@
+{
+  "profiles": [
+    {
+      "name": "Example search profile",
+      "role_family": "Example Function",
+      "source": "example-source",
+      "queries": ["Example role title", "Adjacent discovery term"],
+      "geography": "User-defined target geography",
+      "work_model": "remote-or-local-user-defined",
+      "lookback_hours": 48,
+      "notes": "Search terms are retrieval signals, not final fit decisions."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "desired": [
+    {"signal": "Example desired characteristic", "reason": "Why the user wants more of this"}
+  ],
+  "undesired": [
+    {"signal": "Example undesired characteristic", "reason": "Why the user wants less of this"}
+  ],
+  "work_style": {
+    "ownership": "user-defined",
+    "stakeholder_interaction": "user-defined",
+    "analytical_vs_operational": "user-defined",
+    "individual_vs_cross_functional": "user-defined"
+  },
+  "growth_priorities": ["Example learning priority"],
+  "domain_preferences": ["Example preferred domain"],
+  "notes": "Career preference is not evidence of capability. Keep the two models separate."
+}
