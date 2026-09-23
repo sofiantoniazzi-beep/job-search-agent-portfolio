@@ -75,11 +75,11 @@ The portfolio implementations are intentionally sanitized and compact. They pres
 
 A source listing is an observation; a canonical `JOB-######` ID represents the durable vacancy identity used downstream.
 
-Identity is resolved conservatively in two layers. First, same-run cross-source deduplication collapses high-confidence duplicate observations. Then persistence resolves historical identity in this order: exact known source alias, strict same-source repost within a bounded window, one unambiguous conservative cross-source historical match, or a new canonical vacancy.
+Identity is resolved conservatively in two layers. First, same-run deduplication collapses high-confidence duplicate observations. Remote advertisements can match across different sources or city labels only when normalized company, exact title, and full description are identical and both listings are explicitly remote. Other observations retain the conservative description-similarity and city-compatibility rules. Then persistence resolves historical identity in this order: exact known source alias, strict same-source repost within a bounded window, one unambiguous conservative cross-source historical match, or a new canonical vacancy.
 
-Historical cross-source matching requires exact normalized company/title, sufficiently similar descriptions, compatible locations, and genuinely new source provenance. If more than one historical candidate qualifies, the reference favors creating a new canonical vacancy rather than risking a false merge.
+Historical cross-source matching requires exact normalized company/title, sufficiently similar descriptions, compatible locations, and genuinely new source provenance. Strictly identical remote advertisements can cross city labels, while a merely similar description cannot. If more than one historical candidate qualifies, the reference favors creating a new canonical vacancy rather than risking a false merge.
 
-The registry retains source aliases and sanitized source-URL provenance so later maintenance workflows can reason about the individual observations behind a canonical vacancy.
+The registry retains source aliases, work model, and sanitized source-URL provenance so future sightings resolve to the right canonical vacancy and later maintenance workflows can reason about individual observations.
 
 ## Decision engine
 
