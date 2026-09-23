@@ -21,7 +21,7 @@ A production job-search decision system that turns qualitative career discovery 
 - Recovery checkpoints, run logging, and cost instrumentation
 - Separate weekly availability maintenance with conservative `Active / Closed / Unknown` logic
 - **56-column** production Tracker schema
-- **23 portfolio tests passing** across core decision, persistence, orchestration, availability, and state-safety rules
+- **26 portfolio tests passing** across core decision, persistence, orchestration, availability, and state-safety rules
 
 ## How the project evolved
 
@@ -103,7 +103,7 @@ A synthetic version of the assessment contract is available at [`prompts/expande
 
 ## Identity and cost control
 
-The system distinguishes a **source observation** from a **canonical vacancy**. Same-run cross-source duplicates are collapsed before persistence. Historical identity resolution then prioritizes known aliases, conservative same-source repost matching, and one unambiguous conservative cross-source historical match before creating a new `JOB-######` identity.
+The system distinguishes a **source observation** from a **canonical vacancy**. Same-run duplicates are collapsed before persistence. Identical remote advertisements can share an identity across sources and city labels when normalized company, title, and full description match exactly. Other listings retain conservative city compatibility and description-similarity rules. Historical identity resolution then prioritizes known aliases, strict same-source repost matching, and one unambiguous conservative cross-source historical match before creating a new `JOB-######` identity. The registry retains all source aliases so rediscovery resolves to the same canonical vacancy.
 
 Only **new canonical vacancies** enter the full decision engine and semantic assessment. Previously Seen vacancies update observation state without paying for the same full matching call again.
 
@@ -136,6 +136,8 @@ The replication path is:
 1. [`Phase 0 — Career Discovery & Candidate Modeling`](docs/phase-0-discovery.md)
 2. [`Phase 1 — Build the MVP`](docs/phase-1-mvp.md)
 3. [`Phase 2 — Productionize the Agent`](docs/phase-2-production.md)
+
+The semantic geographic eligibility step in Phase 1 is optional for a local-only search whose deterministic location rules already establish eligibility. It is useful for remote postings with nuanced residency or hiring restrictions.
 
 Synthetic templates for Candidate Evidence, career preferences, role taxonomy, CV variants and search profiles live under `templates/`.
 
@@ -182,7 +184,7 @@ pip install -r requirements.txt
 python -m pytest -q
 ```
 
-The **23 reference tests pass in GitHub Actions** and cover matching thresholds, career-direction safeguards, model-output validation, source-aware availability semantics, canonical availability aggregation, cross-source deduplication, historical canonical persistence and repost handling, CV routing, Tracker semantics, Ranker behavior, daily orchestration, weekly maintenance, and daily-vs-weekly state-commit boundaries.
+The **26 reference tests** cover matching thresholds, career-direction safeguards, model-output validation, source-aware availability semantics, canonical availability aggregation, cross-source deduplication, exact remote identity, historical canonical persistence and repost handling, CV routing, Tracker semantics, Ranker behavior, daily orchestration, weekly maintenance, and daily-vs-weekly state-commit boundaries.
 
 ## Privacy and sanitization
 

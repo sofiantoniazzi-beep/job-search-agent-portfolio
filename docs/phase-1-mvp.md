@@ -46,6 +46,8 @@ Keep geography separate from professional fit. Ask only whether the role can be 
 
 A semantic geography step can be useful when postings express restrictions in natural language. The model should not assess skills, seniority, desirability, or compensation in this step. Ambiguity should pass unless the user intentionally chooses a stricter policy.
 
+**Optional for local-only searches:** If you are not searching for remote jobs and your deterministic filters already restrict postings to eligible local locations, you can skip the semantic geographic eligibility check. Keep the explicit local location and work-authorization rules; the semantic step is most useful for interpreting nuanced remote residency, hiring, payroll, and timezone restrictions.
+
 See `src/geographic_eligibility.py`.
 
 ## 6. Matching design

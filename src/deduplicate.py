@@ -55,12 +55,25 @@ def specific_city(location) -> str:
 
 
 def is_duplicate(a: dict, b: dict) -> bool:
-    """High-confidence rule: exact normalized company/title, similar JD, no city conflict."""
+    """Group exact remote identity across sources and cities; otherwise use the conservative rule."""
+    company = normalize_text(a.get("Company"))
+    title = normalize_text(a.get("Job Title"))
+    if not company or company != normalize_text(b.get("Company")):
+        return False
+    if not title or title != normalize_text(b.get("Job Title")):
+        return False
+
+    description_a = normalize_text(a.get("Job Description"))
+    description_b = normalize_text(b.get("Job Description"))
+    exact_remote = (
+        normalize_text(a.get("Work Model")) == "remote"
+        and normalize_text(b.get("Work Model")) == "remote"
+        and bool(description_a)
+        and description_a == description_b
+    )
+    if exact_remote:
+        return True
     if a.get("Source") == b.get("Source"):
-        return False
-    if normalize_text(a.get("Company")) != normalize_text(b.get("Company")):
-        return False
-    if normalize_text(a.get("Job Title")) != normalize_text(b.get("Job Title")):
         return False
 
     similarity = description_similarity(a.get("Job Description"), b.get("Job Description"))

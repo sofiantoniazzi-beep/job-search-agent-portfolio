@@ -80,13 +80,27 @@ def _alias_index(registry: dict) -> dict[str, str]:
 
 
 def _same_identity_fields(row: pd.Series, vacancy: dict) -> bool:
-    if normalize_text(row.get("Company")) != normalize_text(vacancy.get("company")):
+    company = normalize_text(row.get("Company"))
+    title = normalize_text(row.get("Job Title"))
+    if not company or company != normalize_text(vacancy.get("company")):
         return False
-    if normalize_text(row.get("Job Title")) != normalize_text(vacancy.get("job_title")):
+    if not title or title != normalize_text(vacancy.get("job_title")):
         return False
+    if _exact_remote_identity(row, vacancy):
+        return True
     current_city = specific_city(row.get("Location", ""))
     historic_city = specific_city(vacancy.get("location", ""))
     return not (current_city and historic_city and current_city != historic_city)
+
+
+def _exact_remote_identity(row: pd.Series, vacancy: dict) -> bool:
+    """An identical remote advertisement may carry different city labels."""
+    if normalize_text(row.get("Work Model")) != "remote":
+        return False
+    if normalize_text(vacancy.get("work_model")) not in {"", "remote"}:
+        return False
+    current = normalize_text(row.get("Job Description"))
+    return bool(current and current == normalize_text(vacancy.get("job_description")))
 
 
 def _strict_repost_match(row: pd.Series, vacancy: dict) -> bool:
@@ -166,6 +180,7 @@ def resolve_canonical_jobs(jobs: pd.DataFrame, registry: dict) -> tuple[pd.DataF
                 "job_title": row.get("Job Title", ""),
                 "job_description": row.get("Job Description", ""),
                 "location": row.get("Location", ""),
+                "work_model": row.get("Work Model", ""),
                 "first_seen": row.get("First Seen", ""),
                 "last_seen": row.get("First Seen", ""),
                 "sources": [],

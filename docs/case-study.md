@@ -56,6 +56,8 @@ A source posting became an observation rather than the durable job itself. Same-
 
 This solved both workflow duplication and cost: only **new canonical vacancies** enter full semantic assessment.
 
+A historical identity reconciliation also revealed how an early test baseline can leave spreadsheet rows with IDs that later refer to different registry vacancies. The remediation kept a complete spreadsheet backup, reconciled rows using posting provenance and description evidence, consolidated strict duplicates in the canonical registry, preserved human review decisions and invalid-posting feedback, and rebuilt the derived ranking view. The public reference contains the identity rule and synthetic tests, not the private registry or Tracker data.
+
 ### Transaction-safe workflow state
 
 Canonical state advances only after Tracker synchronization and Ranker refresh succeed. That prevents a downstream failure from causing a future run to believe a vacancy was already delivered when it was not.

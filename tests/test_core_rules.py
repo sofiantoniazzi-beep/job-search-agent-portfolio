@@ -65,6 +65,15 @@ def test_cross_source_duplicate_rule():
     assert is_duplicate(a, b)
 
 
+def test_identical_remote_postings_group_across_sources_and_cities():
+    a = {"Source": "Source A", "Company": "Example Co", "Job Title": "Product Manager", "Job Description": "Own product discovery and coordinate feature delivery.", "Location": "New York, NY", "Work Model": "Remote"}
+    b = dict(a, Source="Source B", Location="Austin, TX")
+    assert is_duplicate(a, b)
+    assert is_duplicate(a, dict(b, Source="Source A"))
+    assert not is_duplicate(a, dict(b, **{"Work Model": "Hybrid"}))
+    assert not is_duplicate(a, dict(b, **{"Job Description": "Own product discovery and coordinate a different team."}))
+
+
 def test_weekly_backlog_skips_already_closed_rows():
     rows = [{"Job ID": "JOB-000001", "Availability Status": "Active"}, {"Job ID": "JOB-000002", "Availability Status": "Closed"}, {"Job ID": "", "Availability Status": "Active"}]
     assert [row["Job ID"] for row in select_backlog(rows)] == ["JOB-000001"]
