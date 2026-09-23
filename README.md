@@ -1,57 +1,65 @@
 # Job Search Agent
 
-A production job-search decision system that turns qualitative career discovery into structured candidate evidence, broad vacancy retrieval, evidence-bounded semantic evaluation, CV routing, and a reliable human-review workflow.
+**An AI-assisted system I designed and built to turn a broad, messy job search into a structured decision workflow — automatically discovering, evaluating, ranking, and tracking opportunities while keeping application decisions human-controlled.**
 
-> **Portfolio version:** this repository is a clean-room, sanitized representation of a private production system. Personal candidate evidence, credentials, live spreadsheet IDs, cloud resource identifiers, retrieved job data, and other production configuration are excluded or replaced with synthetic examples.
+> **Portfolio version:** this repository is a clean-room, sanitized representation of my private production system. Personal candidate evidence, credentials, live spreadsheet IDs, cloud resource identifiers, retrieved job data, and other production configuration are excluded or replaced with synthetic examples.
 
-## Two ways to use this repository
+## Why I built it
 
-**I want to understand the project.** Continue through this README for the problem, evolution, architecture, operational workflow, and major design decisions.
+I wanted to solve a problem I was experiencing myself: job boards are good at surfacing vacancies, but much less useful for making consistent decisions across hundreds of imperfectly described opportunities.
 
-**I want to build my own.** Start with [`AI_BUILD_GUIDE.md`](AI_BUILD_GUIDE.md). It is designed so a user can give this repository to an AI assistant and work through **Phase 0 → Phase 1 → Phase 2** using their own evidence, preferences and constraints rather than copying the original candidate's configuration.
+The hard part was not simply finding more jobs. It was building a system that could answer, repeatedly and transparently:
 
-## At a glance
+- Is this actually a new opportunity, or the same vacancy reposted somewhere else?
+- Is it compatible with my geographic and work constraints?
+- How strong is the match based only on experience I can substantiate?
+- Does the role fit the direction I want to move in, not just what I *could* do?
+- Which CV positioning makes the most sense?
+- Which opportunities deserve attention first?
 
-- Multi-source retrieval from LinkedIn, Indeed, and Himalayas
-- Stable canonical `JOB-######` vacancy identity across duplicates and reposts
-- Evidence-bounded semantic matching with explicit anti-hallucination rules
-- Career Direction modeled separately from professional capability
-- CV routing by role function and specialization
-- Google Sheets Tracker + Ranker + Run Log operational workflow
-- Recovery checkpoints, run logging, and cost instrumentation
-- Separate weekly availability maintenance with conservative `Active / Closed / Unknown` logic
-- **56-column** production Tracker schema
-- **26 portfolio tests passing** across core decision, persistence, orchestration, availability, and state-safety rules
+What began as a personal workflow evolved into a production system that now runs unattended.
 
-## How the project evolved
+## What I built
 
-The project did not begin as an automation exercise. It developed through three questions.
+The agent follows this decision flow:
 
-### Phase 0 — What am I actually looking for, and what evidence do I have?
+**Discover → Normalize → Deduplicate → Resolve Identity → Filter → Assess → Route → Track → Rank → Maintain**
 
-Professional experience was reconstructed project by project rather than relying on an existing CV. Each project was decomposed into scope, problem, role, responsibilities, stakeholders, methods/tools, decisions, deliverables and confirmed results.
+It currently:
 
-That work produced a structured **Candidate Evidence** boundary. Career-direction discovery then separated work the candidate *could* do from work they actually wanted to optimize the search around. Broad role exploration became a YES / MAYBE / NO taxonomy, which then informed role families, retrieval keywords and a set of base CV positioning strategies.
+- retrieves vacancies from LinkedIn, Indeed, and Himalayas;
+- maintains persistent canonical vacancy identities across duplicates and reposts;
+- combines deterministic rules with evidence-bounded LLM assessment;
+- separates professional capability from career-direction fit;
+- routes qualified jobs to the most appropriate CV strategy;
+- maintains a Google Sheets Tracker, Ranker, and Run Log;
+- tracks model usage and cost where providers expose exact accounting;
+- uses recovery checkpoints and conservative state-commit rules for unattended execution;
+- runs availability maintenance separately so liveness checks cannot corrupt discovery state.
 
-**Output:** professional evidence → career preferences → role taxonomy → CV architecture → localization/search configuration.
+The private production system has completed unattended end-to-end runs. This public repository recreates the substantive architecture with sanitized reference code, synthetic data, and **26 passing portfolio tests**.
 
-### Phase 1 — Can the search and evaluation workflow be automated?
+## What made this interesting
 
-The MVP connected broad vacancy retrieval to normalization, high-confidence eligibility rules, evidence-bounded semantic assessment, CV routing, and a Google Sheets review workflow.
+This became much more than an automation script. Several product and system-design questions shaped the project:
 
-Search terms optimized recall rather than deciding fit. Deterministic rules handled certainty; semantic assessment handled ambiguity. A Tracker preserved the review workflow and a Ranker focused attention on the strongest current opportunities.
+**A job posting is not necessarily a job.** The same vacancy can appear on several platforms or be reposted under a new source ID, so I separated source observations from persistent canonical vacancy identity.
 
-**Output:** `Retrieve → Normalize → Filter → Assess → Route → Track → Rank`.
+**Filter certainty; score ambiguity.** Deterministic rules handle conditions the system can establish confidently. Ambiguous professional fit is preserved for semantic assessment instead of being prematurely filtered out.
 
-### Phase 2 — Can it operate reliably without me?
+**LLMs should have bounded authority.** The model evaluates evidence and gaps, but Python owns score arithmetic, thresholds, recommendation logic, and validation. Candidate Evidence acts as a factual boundary against invented experience.
 
-Productionization added canonical vacancy identity, conservative deduplication and repost handling, New-only semantic assessment, idempotent spreadsheet writes, caching, recovery checkpoints, run logging, provider-cost instrumentation, a separate availability workflow, containerization and scheduled cloud execution.
+**Capability is not the same as career direction.** A role can be a strong skills match and still be the wrong next step, so career-direction fit is modeled separately.
 
-The key state boundary became: **canonical state advances only after Tracker synchronization and Ranker refresh succeed**.
+**Failure behavior matters.** Canonical state advances only after the downstream human-facing workflow succeeds, and availability checks prefer an explicit Unknown state over falsely declaring a vacancy closed.
 
-**Output:** a stateful system capable of unattended execution with explicit recovery and conservative failure semantics.
+These decisions are explored in more detail in the [case study](docs/case-study.md), [matching methodology](docs/matching-methodology.md), and [production reliability notes](docs/production-reliability.md).
 
-The full narrative is in [`docs/case-study.md`](docs/case-study.md). The reusable build methodology is documented in [`Phase 0`](docs/phase-0-discovery.md), [`Phase 1`](docs/phase-1-mvp.md), and [`Phase 2`](docs/phase-2-production.md).
+## See it quickly
+
+The architecture and sanitized Google Sheets views below show the production workflow without exposing personal job-search data. If you want the deeper technical implementation, continue through this README or browse the [architecture documentation](docs/architecture.md).
+
+If you want to use the methodology to build your own version, start with [AI_BUILD_GUIDE.md](AI_BUILD_GUIDE.md), which walks through **career discovery → MVP → productionization** using your own evidence and preferences.
 
 ## System architecture
 
