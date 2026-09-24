@@ -10,6 +10,10 @@ from __future__ import annotations
 from typing import Protocol
 
 
+BASE_MATCH_WEIGHT = 0.85
+FRESHNESS_WEIGHT = 0.15
+
+
 class SheetsBackend(Protocol):
     def read_tracker_rows(self) -> list[dict]: ...
     def replace_ranker_values(self, rows: list[dict]) -> None: ...
