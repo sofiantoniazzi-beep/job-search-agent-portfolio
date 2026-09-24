@@ -83,7 +83,7 @@ The production Tracker has **56 columns** spanning job metadata, assessment, CV 
 
 ![Sanitized Google Sheets Ranker view](assets/ranker_mockup.svg)
 
-The Ranker uses the production 13-column structure and narrows attention to active/reviewable jobs. Ranking Score combines **70% Base Match + 30% Freshness**; Domain Advantage is used as a tie-breaker rather than displayed as a Ranker column. Scheduled refreshes run directly from Python, while Apps Script is retained only for selected interactive spreadsheet behavior.
+The Ranker uses the production 13-column structure and narrows attention to active/reviewable jobs. Ranking Score combines **85% Base Match + 15% Freshness**; Domain Advantage is used as a tie-breaker rather than displayed as a Ranker column. Scheduled refreshes run directly from Python, while Apps Script is retained only for selected interactive spreadsheet behavior.
 
 ### Run Log — operational observability
 
