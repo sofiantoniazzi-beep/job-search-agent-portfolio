@@ -15,6 +15,7 @@ from typing import Callable
 class CloudWorkflows:
     daily: Callable[[], object]
     weekly_availability: Callable[[], object]
+    ranker: Callable[[], object] | None = None
     download_state: Callable[[], None] | None = None
     upload_state: Callable[[], None] | None = None
 
@@ -27,8 +28,8 @@ def run_workflow(name: str, workflows: CloudWorkflows) -> object:
     identity/provenance when needed, but never commits a new registry.
     """
     workflow = name.strip().lower()
-    if workflow not in {"daily", "availability"}:
-        raise ValueError("workflow must be 'daily' or 'availability'")
+    if workflow not in {"daily", "availability", "ranker"}:
+        raise ValueError("workflow must be 'daily', 'availability', or 'ranker'")
 
     if workflows.download_state is not None:
         workflows.download_state()
@@ -36,6 +37,11 @@ def run_workflow(name: str, workflows: CloudWorkflows) -> object:
     if workflow == "availability":
         # Separate weekly maintenance path: no canonical-state upload.
         return workflows.weekly_availability()
+
+    if workflow == "ranker":
+        if workflows.ranker is None:
+            raise ValueError("ranker workflow is not configured")
+        return workflows.ranker()
 
     result = workflows.daily()
 
